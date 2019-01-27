@@ -23,7 +23,12 @@ double getTimeElapsed(struct timespec start)
     clock_gettime(CLOCK_ID, &now);
 
     int s = now.tv_sec - start.tv_sec;
-    long ns = abs(now.tv_nsec - start.tv_nsec);
+    long ns = now.tv_nsec - start.tv_nsec;
+    if (s > 0 && ns < 0)
+    {
+        s--;
+        ns += SEC_TO_NS;
+    }
 
     double timeInSeconds = (double)s + (ns / (double)SEC_TO_NS);
 
