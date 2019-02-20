@@ -80,12 +80,12 @@ void generateRandomFile(int sizeInMB, int maxBufferSize, char *filename)
     
     FILE *generatedFile = fopen(filename, "w+");
     if (generatedFile == NULL)
-	{
-		printf("Error! could not open %s for writing! Exiting generator.\n", filename);
-		return;
-	}
+    {
+        printf("Error! could not open %s for writing! Exiting generator.\n", filename);
+        return;
+    }
 	
-	int bytesRead;
+    int bytesRead;
     int bytesWritten = 0;
     int totalBytesWritten = 0;
 
@@ -99,12 +99,12 @@ void generateRandomFile(int sizeInMB, int maxBufferSize, char *filename)
     }
 
     FILE *dev_urandom = fopen("/dev/urandom", "rb");
-	if (dev_urandom == NULL)
-	{
-		printf("Error! Could not open urandom for reading! Exiting generator.\n");
-		free(buffer);
-		return;
-	}
+    if (dev_urandom == NULL)
+    {
+        printf("Error! Could not open urandom for reading! Exiting generator.\n");
+        free(buffer);
+        return;
+    }
 	
     // Until the totalBytes is what is needed
     while (totalBytesWritten < bytesNeeded)
